@@ -1,76 +1,91 @@
+<script setup lang="ts">
+const { t } = useI18n()
+const myPictureLoaded= ref(false)
+
+const imgSrc = 'https://picsum.photos/400'
+
+function markLoaded() {
+  myPictureLoaded.value = true
+}
+
+onMounted(() => {
+  const img = new Image()
+  img.src = imgSrc
+
+  if (img.complete) {
+    myPictureLoaded.value = true
+  }
+})
+
+
+</script>
+
 <template>
   <div>
-    <UPageHero
-      title="Nuxt Starter Template"
-      description="A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours."
-      :links="[{
-        label: 'Get started',
-        to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
-        target: '_blank',
-        trailingIcon: 'i-lucide-arrow-right',
-        size: 'xl'
-      }, {
-        label: 'Use this template',
-        to: 'https://github.com/nuxt-ui-templates/starter',
-        target: '_blank',
-        icon: 'i-simple-icons-github',
-        size: 'xl',
-        color: 'neutral',
-        variant: 'subtle'
-      }]"
-    />
-
-    <UPageSection
-      id="features"
-      title="Everything you need to build modern Nuxt apps"
-      description="Start with a solid foundation. This template includes all the essentials for building production-ready applications with Nuxt UI's powerful component system."
-      :features="[{
-        icon: 'i-lucide-rocket',
-        title: 'Production-ready from day one',
-        description: 'Pre-configured with TypeScript, ESLint, Tailwind CSS, and all the best practices. Focus on building features, not setting up tooling.'
-      }, {
-        icon: 'i-lucide-palette',
-        title: 'Beautiful by default',
-        description: 'Leveraging Nuxt UI\'s design system with automatic dark mode, consistent spacing, and polished components that look great out of the box.'
-      }, {
-        icon: 'i-lucide-zap',
-        title: 'Lightning fast',
-        description: 'Optimized for performance with SSR/SSG support, automatic code splitting, and edge-ready deployment. Your users will love the speed.'
-      }, {
-        icon: 'i-lucide-blocks',
-        title: '100+ components included',
-        description: 'Access Nuxt UI\'s comprehensive component library. From forms to navigation, everything is accessible, responsive, and customizable.'
-      }, {
-        icon: 'i-lucide-code-2',
-        title: 'Developer experience first',
-        description: 'Auto-imports, hot module replacement, and TypeScript support. Write less boilerplate and ship more features.'
-      }, {
-        icon: 'i-lucide-shield-check',
-        title: 'Built for scale',
-        description: 'Enterprise-ready architecture with proper error handling, SEO optimization, and security best practices built-in.'
-      }]"
-    />
-
-    <UPageSection>
-      <UPageCTA
-        title="Ready to build your next Nuxt app?"
-        description="Join thousands of developers building with Nuxt and Nuxt UI. Get this template and start shipping today."
-        variant="subtle"
-        :links="[{
-          label: 'Start building',
-          to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
-          target: '_blank',
-          trailingIcon: 'i-lucide-arrow-right',
-          color: 'neutral'
-        }, {
-          label: 'View on GitHub',
-          to: 'https://github.com/nuxt-ui-templates/starter',
-          target: '_blank',
-          icon: 'i-simple-icons-github',
-          color: 'neutral',
-          variant: 'outline'
-        }]"
-      />
-    </UPageSection>
+    <UPageHero 
+        title="Leonid Osman "
+        orientation="horizontal"
+        :headline=" t('portfolio-head-headline') "
+        :description="t('portfolio-head-description')"
+        class="dark:bg-avocado-700 light:bg-beige-100"
+        :ui="{
+            headline: 'dark:text-avocado-400',
+            title: 'dark:text-beige-200',
+            description: 'dark:text-beige-100'
+        }"
+    >
+        <div class="relative w-[400px] h-[400px]">
+        
+            <USkeleton
+                v-show="!myPictureLoaded"
+                class="absolute inset-0 rounded-full"
+            />  
+            <img
+                src="https://picsum.photos/400"
+                class="w-full h-full rounded-full object-cover"
+                @load="markLoaded"
+            />
+        </div>
+    </UPageHero>
+    <USeparator :ui="{
+        border:'dark:border-avocado-300 light:border-beige-300'
+    }"/>
+    <div orientation="horizontal" class="flex flex-row rounded-none mx-auto max-w-(--ui-container) justify-between py-5  mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16 sm:gap-y-24 ">
+        <UPageFeature
+                title="10+"
+                :description="t('portfolio-small-experience')"
+                :ui="{
+                    title: 'dark:text-beige-200 text-2xl',
+                    description: 'dark:text-beige-100 text-xl'
+                }"
+            />
+            <UPageFeature
+                title="15+"
+                :description="t('portfolio-small-projects')"
+                :ui="{
+                    title: 'dark:text-beige-200 text-2xl',
+                    description: 'dark:text-beige-100 text-xl'
+                }"
+            />
+            <UPageFeature
+                title="7+"
+                :description="t('portfolio-small-languages-programming')"
+                :ui="{
+                    title: 'dark:text-beige-200 text-2xl',
+                    description: 'dark:text-beige-100 text-xl'
+                }"
+            />
+            <UPageFeature
+                title="4"
+                :description="t('portfolio-small-languages')"
+                :ui="{
+                    title: 'dark:text-beige-200 text-2xl',
+                    description: 'dark:text-beige-100 text-xl'
+                }"
+            />
+    </div>
+    <USeparator :ui="{
+        border:'dark:border-avocado-300 light:border-beige-300'
+    }"/>
   </div>
 </template>

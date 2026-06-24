@@ -11,12 +11,12 @@ export default defineNuxtConfig({
     '@formkit/auto-animate',
     '@nuxtjs/google-adsense',
     '@nuxtjs/i18n',
-    '@nuxtjs/plausible',
+    //'@nuxtjs/plausible',
     
   ],
 
   devtools: {
-    enabled: true
+    enabled: false
   },
 
   css: ['~/assets/css/main.css'],
@@ -38,5 +38,12 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()]
+  },
+  i18n: {
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'de', name: 'Deutsch', file: 'de.json' }
+    ]
   }
 })

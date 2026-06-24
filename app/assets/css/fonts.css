@@ -1,0 +1,22 @@
+
+@font-face {
+  font-family: "glimpr";
+  src: url("/public/fonts/glimp-r/GlimpR-CondensedThin.ttf") format("ttf");
+  font-weight: 400;
+  font-style:normal;
+}
+
+
+@font-face {
+  font-family: "paprika";
+  src: url("/public/fonts/paprika/Paprika-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style:normal;
+}
+
+@font-face {
+  font-family: "waterlemon";
+  src: url("/public/fonts/water-lemon/Water\ Lemon.ttf") format("ttf");
+  font-weight: 400;
+  font-style:normal;
+}

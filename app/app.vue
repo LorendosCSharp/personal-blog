@@ -1,4 +1,26 @@
-<script setup>
+<script setup lang="ts">
+import {en, de} from '@nuxt/ui/locale'
+import type { NavigationMenuItem } from '@nuxt/ui'
+
+const { locale, setLocale } = useI18n()
+
+const route = useRoute()
+const normalizedPath = computed(() =>
+  route.path.replace(/^\/(en|de)(?=\/|$)/, '') || '/'
+)
+const items = computed<NavigationMenuItem[]>(() => [
+  {
+    label: 'Home',
+    to: '/',
+    active: normalizedPath.value==="/"
+  },
+  {
+    label: 'Blog',
+    to: '/blog',
+    active: normalizedPath.value==="/blog"
+  },
+
+])
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -7,44 +29,47 @@ useHead({
     { rel: 'icon', href: '/favicon.ico' }
   ],
   htmlAttrs: {
-    lang: 'en'
+    lang: locale
   }
 })
-
-const title = 'Nuxt Starter Template'
-const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
+const title = 'Lorendos - personal site'
+const description = 'Small online site by me, Leonid aka Lorendos with my portfolio and blog'
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
   twitterCard: 'summary_large_image'
 })
 </script>
 
-<template>
-  <UApp>
-    <UHeader>
+<template >
+  <UApp >
+    <UHeader class="light:bg-beige-200 dark:bg-avocado-900">
       <template #left>
         <NuxtLink to="/">
-          <AppLogo class="w-auto h-6 shrink-0" />
+           Leonid Osman
         </NuxtLink>
 
-        <TemplateMenu />
       </template>
+
+      <UNavigationMenu :items="items"/>
 
       <template #right>
         <UColorModeButton />
-
         <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
+          to="https://github.com/LorendosCSharp"
           target="_blank"
           icon="i-simple-icons-github"
           aria-label="GitHub"
           color="neutral"
           variant="ghost"
+        />
+        <ULocaleSelect
+          :model-value="locale"
+          :locales="[en,de]"
+          @update:model-value="setLocale($event)"
         />
       </template>
     </UHeader>
@@ -52,19 +77,20 @@ useSeoMeta({
     <UMain>
       <NuxtPage />
     </UMain>
-
-    <USeparator icon="i-simple-icons-nuxtdotjs" />
+    <USeparator :ui="{
+        border:'dark:border-avocado-300 light:border-beige-300'
+    }"/>
 
     <UFooter>
       <template #left>
-        <p class="text-sm text-muted">
-          Built with Nuxt UI • © {{ new Date().getFullYear() }}
+        <p class="text-sm text-muted ">
+          {{ $t("created-by") }} • © {{ new Date().getFullYear() }}
         </p>
       </template>
 
       <template #right>
         <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
+          to="https://github.com/LorendosCSharp"
           target="_blank"
           icon="i-simple-icons-github"
           aria-label="GitHub"
@@ -75,3 +101,11 @@ useSeoMeta({
     </UFooter>
   </UApp>
 </template>
+
+
+<style>
+  @reference "~/assets/css/main.css";
+  body {
+    @apply light:bg-beige-200;
+  }
+</style>

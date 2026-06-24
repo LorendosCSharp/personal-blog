@@ -3,5 +3,6 @@ allowBuilds:
   '@tailwindcss/oxide': false
   esbuild: false
   sharp: set this to true or false
+  ttf2woff2: set this to true or false
   unrs-resolver: false
   vue-demi: false
