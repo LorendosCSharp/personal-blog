@@ -30,7 +30,7 @@ const items = computed<NavigationMenuItem[]>(() => [
         label: 'New',
         description: 'Latest blog posts',
         icon :'i-lucide-sparkle',
-        to:'/baka'
+        to:'/blog/1'
       }
     ]
   },

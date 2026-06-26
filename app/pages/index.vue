@@ -1,22 +1,7 @@
 <script setup lang="ts">
 
 const { t } = useI18n()
-const myPictureLoaded= ref(false)
 
-const imgSrc = 'https://picsum.photos/400'
-
-function markLoaded() {
-  myPictureLoaded.value = true
-}
-
-onMounted(() => {
-  const img = new Image()
-  img.src = imgSrc
-
-  if (img.complete) {
-    myPictureLoaded.value = true
-  }
-})
 
 
 </script>
@@ -37,15 +22,26 @@ onMounted(() => {
     >
         <div class="relative w-[400px] h-[400px]">
         
-            <USkeleton
-                v-show="!myPictureLoaded"
-                class="absolute inset-0 rounded-full"
-            />  
-            <img
+
+            <NuxtImg
                 src="https://picsum.photos/400"
                 class="w-full h-full rounded-full object-cover"
-                @load="markLoaded"
-            />
+                :custom="true"
+                v-slot="{ src, isLoaded, imgAttrs }"
+                quality="100"
+            >
+              <!-- Show the actual image when loaded -->
+                <img
+                    v-if="isLoaded"
+                    v-bind="imgAttrs"
+                    :src="src"
+                >
+
+                <USkeleton
+                    v-else
+                    class="absolute inset-0 rounded-full"
+                />  
+            </NuxtImg>
         </div>
     </UPageHero>
 

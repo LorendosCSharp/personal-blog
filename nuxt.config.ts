@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     '@dargmuesli/nuxt-cookie-control',
     '@formkit/auto-animate',
     '@nuxtjs/google-adsense',
-    '@nuxtjs/i18n',
+    '@nuxtjs/i18n',,
+    '@nuxt/content'
     //'@nuxtjs/plausible',
     
   ],
@@ -44,6 +45,7 @@ export default defineNuxtConfig({
     locales: [
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'de', name: 'Deutsch', file: 'de.json' }
-    ]
+    ],
+    strategy: 'prefix_except_default'
   }
 })
