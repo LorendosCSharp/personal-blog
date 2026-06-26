@@ -14,7 +14,6 @@
   --color-green-700: #007F45;
   --color-green-800: #016538;
   --color-green-900: #0A5331;
-  --color-green-950: #052E16;
 
   --color-beige-50: #faf7ec;
   --color-beige-100: #f6f0d7;
@@ -26,7 +25,6 @@
   --color-beige-700: #865222;
   --color-beige-800: #704323;
   --color-beige-900: #613922;
-  --color-beige-950: #381d10;
 
   --color-avocado-50: #f4f5f1;
   --color-avocado-100: #e3e7dd;
@@ -38,5 +36,64 @@
   --color-avocado-700: #525940;
   --color-avocado-800: #464b38;
   --color-avocado-900: #3f4233;
-  --color-avocado-950: #22241a;
+}
+@import "tailwindcss";
+
+:root{
+  font-size: large;
+  font-weight: 900;
+}
+
+/* Light theme */
+.light {
+  --background: theme(colors.beige.200);
+  --surface: theme(colors.beige.200);
+  --surface-alt: theme(colors.beige.300);
+
+  --text: theme(colors.avocado.700);
+  --text-muted: theme(colors.avocado.600);
+  --border: theme(colors.beige.300);
+
+}
+
+/* Dark theme */
+.dark {
+  --background: theme(colors.avocado.900);
+  --surface: theme(colors.avocado.800);
+  --surface-alt: theme(colors.avocado.800);
+
+  --text: theme(colors.beige.100);
+  --text-muted: theme(colors.beige.100);
+
+  --border: theme(colors.avocado.300);
+}
+
+body {
+  @apply antialiased;
+  background: var(--background);
+  color: var(--text);
+}
+
+main {
+  background: var(--background);
+  color: var(--text);
+}
+
+header,
+footer {
+  background: var(--surface);
+  color: var(--text);
+}
+
+hr {
+  border-color: var(--border);
+}
+
+a {
+  color: var(--text);
+}
+
+small,
+.text-muted {
+  color: var(--text-muted);
 }

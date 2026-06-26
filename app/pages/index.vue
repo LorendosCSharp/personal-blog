@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const { t } = useI18n()
 const myPictureLoaded= ref(false)
 
@@ -21,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <UPage>
     <UPageHero 
         title="Leonid Osman "
         orientation="horizontal"
@@ -47,13 +48,12 @@ onMounted(() => {
             />
         </div>
     </UPageHero>
-    <USeparator :ui="{
-        border:'dark:border-avocado-300 light:border-beige-300'
-    }"/>
-    <div orientation="horizontal" class="flex flex-row rounded-none mx-auto max-w-(--ui-container) justify-between py-5  mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16 sm:gap-y-24 ">
-        <UPageFeature
+
+    <UPageBody class="pb-0 mb-8">
+        <UContainer class="flex flex-row justify-between">
+            <UPageFeature
                 title="10+"
-                :description="t('portfolio-small-experience')"
+                :description="t('portfolio-small-experiencebun')"
                 :ui="{
                     title: 'dark:text-beige-200 text-2xl',
                     description: 'dark:text-beige-100 text-xl'
@@ -83,9 +83,9 @@ onMounted(() => {
                     description: 'dark:text-beige-100 text-xl'
                 }"
             />
-    </div>
-    <USeparator :ui="{
-        border:'dark:border-avocado-300 light:border-beige-300'
-    }"/>
-  </div>
+        </UContainer>
+    </UPageBody>
+
+  </UPage>
+  
 </template>

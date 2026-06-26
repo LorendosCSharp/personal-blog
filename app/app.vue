@@ -12,12 +12,27 @@ const items = computed<NavigationMenuItem[]>(() => [
   {
     label: 'Home',
     to: '/',
-    active: normalizedPath.value==="/"
-  },
+    active: normalizedPath.value==="/",
+    icon:'i-lucide-house'
+  },  
   {
     label: 'Blog',
-    to: '/blog',
-    active: normalizedPath.value==="/blog"
+    active: normalizedPath.value==="/blog",
+    icon:'i-lucide-newspaper',
+    children:[
+      {
+        label: 'All',
+        description: 'View all blog posts',
+        icon :'i-lucide-layers',
+        to:'/blog'
+      },
+      {
+        label: 'New',
+        description: 'Latest blog posts',
+        icon :'i-lucide-sparkle',
+        to:'/baka'
+      }
+    ]
   },
 
 ])
@@ -46,7 +61,7 @@ useSeoMeta({
 
 <template >
   <UApp >
-    <UHeader class="light:bg-beige-200 dark:bg-avocado-900">
+    <UHeader class="light:bg-beige-200 dark:bg-avocado-900 ">
       <template #left>
         <NuxtLink to="/">
            Leonid Osman
@@ -54,7 +69,7 @@ useSeoMeta({
 
       </template>
 
-      <UNavigationMenu :items="items"/>
+      <UNavigationMenu :items="items" class="flex flex-col min-w-[25rem]"as="div"/>
 
       <template #right>
         <UColorModeButton />
@@ -70,6 +85,8 @@ useSeoMeta({
           :model-value="locale"
           :locales="[en,de]"
           @update:model-value="setLocale($event)"
+          variant="ghost"
+          class="w-38"
         />
       </template>
     </UHeader>
