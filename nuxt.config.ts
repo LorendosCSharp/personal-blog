@@ -8,11 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@comark/nuxt',
     '@dargmuesli/nuxt-cookie-control',
-    '@formkit/auto-animate',
-    '@nuxtjs/google-adsense',
     '@nuxtjs/i18n',,
     '@nuxt/content'
-    //'@nuxtjs/plausible',
     
   ],
 
@@ -46,6 +43,6 @@ export default defineNuxtConfig({
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'de', name: 'Deutsch', file: 'de.json' }
     ],
-    strategy: 'prefix_except_default'
+    strategy: 'prefix'
   }
 })

@@ -1,19 +1,11 @@
 <script setup lang="ts">
-
-
 const { t,locale } = useI18n()
+const { getPostBySlug } = usePosts()
 
-const slug = useRoute().params.slug
-const { data: post } = await useAsyncData(
-  `blog-${locale.value}-${slug}`,
-  () =>
-    queryCollection('blog')
-      .path(`/blog/${locale.value}/${slug}`)
-      .first(),
-  {
-    watch: [locale]
-  }
-)
+const route = useRoute()
+const slug = route.params.slug as string
+
+const post = await getPostBySlug(slug)
 </script>
 
 <template>

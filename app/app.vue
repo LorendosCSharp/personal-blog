@@ -2,7 +2,7 @@
 import {en, de} from '@nuxt/ui/locale'
 import type { NavigationMenuItem } from '@nuxt/ui'
 
-const { locale, setLocale } = useI18n()
+const { locale, setLocale,t } = useI18n()
 
 const route = useRoute()
 const normalizedPath = computed(() =>
@@ -21,14 +21,14 @@ const items = computed<NavigationMenuItem[]>(() => [
     icon:'i-lucide-newspaper',
     children:[
       {
-        label: 'All',
-        description: 'View all blog posts',
+        label: t('blog-all'),
+        description: t('blog-all-description'),
         icon :'i-lucide-layers',
         to:'/blog'
       },
       {
-        label: 'New',
-        description: 'Latest blog posts',
+        label: t('blog-latest'),
+        description: t('blog-latest-description'),
         icon :'i-lucide-sparkle',
         to:'/blog/1'
       }

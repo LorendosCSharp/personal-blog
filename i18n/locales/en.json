@@ -10,6 +10,10 @@
     "portfolio-small-projects":"Projects",
     "portfolio-small-languages-programming":"Programming Languages",
     "portfolio-small-languages":"Spoken Languages",
+    "blog-all":"All",
+    "blog-all-description":"View all blog posts",
+    "blog-latest":"Latest",
+    "blog-latest-description":"The latest blog post",
     "sort-date":"date",
     "sort-az":"a-z",
     "sort-za":"z-a"

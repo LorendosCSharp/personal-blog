@@ -1,63 +1,9 @@
 
 <script setup lang="ts">
-import type { BlogPostProps } from '@nuxt/ui'
 const { t } = useI18n()
-const posts = ref<BlogPostProps[]>([
-  {
-    title: 'Nuxt Icon v1',
-    description: 'Discover Nuxt Icon v1!',
-    image: 'https://nuxt.com/assets/blog/nuxt-icon/cover.png',
-    date: '2024-11-25'
-  },
-  {
-    title: 'Nuxt 3.14',
-    description: 'Nuxt 3.14 is out!',
-    image: 'https://nuxt.com/assets/blog/v3.14.png',
-    date: '2024-11-04'
-  },
-  {
-    title: 'Nuxt 3.13',
-    description: 'Nuxt 3.13 is out!',
-    image: 'https://nuxt.com/assets/blog/v3.13.png',
-    date: '2024-08-22'
-  },
-    {
-    title: 'Nuxt Icon v1',
-    description: 'Discover Nuxt Icon v1!',
-    image: 'https://nuxt.com/assets/blog/nuxt-icon/cover.png',
-    date: '2024-11-25'
-  },
-  {
-    title: 'Nuxt 3.14',
-    description: 'Nuxt 3.14 is out!',
-    image: 'https://nuxt.com/assets/blog/v3.14.png',
-    date: '2024-11-04'
-  },
-  {
-    title: 'Nuxt 3.13',
-    description: 'Nuxt 3.13 is out!',
-    image: 'https://nuxt.com/assets/blog/v3.13.png',
-    date: '2024-08-22'
-  },
-    {
-    title: 'Nuxt Icon v1',
-    description: 'Discover Nuxt Icon v1!',
-    image: 'https://nuxt.com/assets/blog/nuxt-icon/cover.png',
-    date: '2024-11-25'
-  },
-  {
-    title: 'Nuxt 3.14',
-    description: 'Nuxt 3.14 is out!',
-    image: 'https://nuxt.com/assets/blog/v3.14.png',
-    date: '2024-11-04'
-  },
-  {
-    title: 'Nuxt 3.13',
-    description: 'Nuxt 3.13 is out!',
-    image: 'https://nuxt.com/assets/blog/v3.13.png',
-    date: '2024-08-22'
-  }
-])
+const { getAllPosts } = usePosts()
+
+const posts=await getAllPosts()
 const items = ref([t('sort-date'),t('sort-az'),t('sort-za')])
 const value = ref(t('sort-date'))
 
@@ -88,7 +34,18 @@ function to(page: number) {
                     <USelectMenu v-model="value" :items="items" icon="i-lucide-filter" variant="ghost" class="w-48"/>
                     <UInput :placeholder="t('search')" class="flex-1" icon="i-lucide-search"/>
                 </div>
-                <UBlogPosts :posts="posts" class="pb-8"/>
+                
+                <UBlogPosts class="pb-8">
+
+                    <UBlogPost
+                        v-for="(post,index) in posts"
+                        :key="index"
+                        v-bind="post"
+                        :to="post.path"
+                        :image="post.imageSrc"
+                    />
+
+                </UBlogPosts>
                 
                 <div class="flex justify-center">
                     <UPagination  :sibling-count="1" :items-per-page="9" :to="to"/>

@@ -49,7 +49,7 @@ const { t } = useI18n()
         <UContainer class="flex flex-row justify-between">
             <UPageFeature
                 title="10+"
-                :description="t('portfolio-small-experiencebun')"
+                :description="t('portfolio-small-experience')"
                 :ui="{
                     title: 'dark:text-beige-200 text-2xl',
                     description: 'dark:text-beige-100 text-xl'

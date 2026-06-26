@@ -1,11 +1,11 @@
 ---
 imageSrc: https://picsum.photos/200
-title: 'The test blog 1'
+title: 'The test blog'
 description: 'This blog tells -'
 date: 2020-11-11
 ---
 
-# Welcome to the Test Blog2
+# Welcome to the Test Blog
 
 This is a sample blog post for testing **Nuxt Content** rendering. It includes headings, lists, quotes, code blocks, tables, images, and more.
 
